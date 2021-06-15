@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { Route } from 'react-router';
+import AdminMainpage from './admin/AdminMainpage';
 import './App.css';
-
+import CompanyMainPage from './company/CompanyMainPage';
+import PersonMainPage from './person/PersonMainPage';
+import regularMain from './regular/regularMain';
+import React, { useState, useEffect } from 'react';
 function App() {
+  
+  useEffect(() => {
+    document.title = "JobNetwork.org"
+ }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+           <Route exact path="/" component={regularMain}/>
+           <Route exact path="/admin/" component={AdminMainpage}/>
+           <Route exact path="/company/" component={CompanyMainPage}/>
+           <Route exact path="/person/" component={PersonMainPage}/>
     </div>
   );
 }
