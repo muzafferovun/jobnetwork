@@ -11,11 +11,6 @@ export default class SessionControlService{
             "headers": {
               'Content-Type': 'application/json',
             }
-        }).then((response) => {
-           console.log("reactNativeDemo","response get details:"+response.data);
-        })
-        .catch((error) => {
-           console.log("axios error:",error);
         });
     }
 
