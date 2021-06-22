@@ -1,175 +1,40 @@
 import React from 'react';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
+
 import { makeStyles } from '@material-ui/core/styles';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import Typography from '@material-ui/core/Typography';
-import DraftsIcon from '@material-ui/icons/Drafts';
+
 import SendIcon from '@material-ui/icons/Send';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 
-const useStyles = makeStyles({
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SchoolIcon from '@material-ui/icons/School';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 230,
+    width: '100%',
   },
-});
-
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 export default function AdminMenu() {
   const classes = useStyles();
+  const history = useHistory();
+  function openModule(modulname) {
+    history.push("/admin/" + modulname + "/")
+  }
 
-  return (
-   
-      <MenuList style={{width:"100%"}}>
-        <MenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit">A short message</Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <PriorityHighIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit">A very long text that overflows</Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-      </MenuList>
-    
-  );
+
+return (
+  <div className={classes.root}>
+   </div>
+
+
+);
 }

@@ -16,14 +16,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { useSelector } from 'react-redux'
-import SignIn from './SignIn'
-import SignOut from './SignOut'
+
 import SessionControlService from '../services/sessionControlService';
-import { Inbox } from '@material-ui/icons';
-import ContainerDesktop from './ContainerDesktop';
-import ContainerMobile from './ContainerMobile';
-import AdminMenu from './AdminMenu';
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -108,15 +103,9 @@ export default function NavbarAdmin() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
- 
-    const [anchorE2, setAnchorE2] = React.useState(null);
-    const [mobileMoreAnchorE2, setMobileMoreAnchorE2] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const isMainMobileMenuOpen = false;
-    const [isOpenMainMenu, setIsOpenMainMenu] = useState(false)
-   
+ 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -128,23 +117,6 @@ export default function NavbarAdmin() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
-    };
-
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-    const handleMainMenuClose = (event) => {
-        setMobileMoreAnchorE2(event.currentTarget);
-    };
-    
-    const handleMenuOpen = (event) => {
-        if(isOpenMainMenu){
-            setIsOpenMainMenu(false);
-        }
-        else{
-            setIsOpenMainMenu(true);
-           
-        }
     };
 
     const menuId = 'primary-search-account-menu';
@@ -164,61 +136,10 @@ export default function NavbarAdmin() {
         </Menu>
     );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-
-                <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
-    );
-
     return (
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.sectionMobile}
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleMenuOpen}
-                        >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         JobNetwork
             </Typography>
@@ -236,7 +157,7 @@ export default function NavbarAdmin() {
                         />
                     </div>
                     <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
+                    <div>
                         <IconButton aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="secondary">
                                 <MailIcon />
@@ -258,30 +179,10 @@ export default function NavbarAdmin() {
                             <AccountCircle />
                         </IconButton>
                     </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
             {renderMenu}
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-                <ContainerDesktop></ContainerDesktop>
-            </div>
-            <div className={classes.sectionMobile}>
-            {isOpenMainMenu && <AdminMenu  className={classes.sectionMobile} />}
-            {!isOpenMainMenu && <ContainerMobile></ContainerMobile>}    
-                
-            </div>
-        </div>
+         </div>
     );
 }

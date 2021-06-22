@@ -5,6 +5,8 @@ import CompanyMainPage from './company/CompanyMainPage';
 import PersonMainPage from './person/PersonMainPage';
 import regularMain from './regular/regularMain';
 import React, { useState, useEffect } from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import SchoolMain from './admin/moduls/school/SchoolMain';
 function App() {
   
   useEffect(() => {
@@ -16,8 +18,10 @@ function App() {
            <Route exact path="/admin/" component={AdminMainpage}/>
            <Route exact path="/company/" component={CompanyMainPage}/>
            <Route exact path="/person/" component={PersonMainPage}/>
+
     </div>
   );
+
 }
 
 export default App;

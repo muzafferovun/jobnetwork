@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MenuDesktop() {
+export default function MainPage() {
     return (
         <div>
-            
+            language main page
         </div>
     )
 }
