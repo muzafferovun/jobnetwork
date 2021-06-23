@@ -20,6 +20,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
+import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
 
 let modulCaption="Schooll";
@@ -73,6 +74,12 @@ export default function SchoolMain() {
                         <ListItemText primary={"New Schooll"} />
                     </ListItem>
             </List>
+            <List>
+                    <ListItem button  onClick={()=>openModuleAction("list","List Schoolls")}>
+                        <ListItemIcon><InboxIcon /></ListItemIcon>
+                        <ListItemText primary={"List Schoolls"} />
+                    </ListItem>
+            </List>
          </div>
     );
     const [activeModulAction, setActiveModulAction] = useState("");
@@ -100,7 +107,8 @@ export default function SchoolMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm/>}
+            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
+           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
             {activeModulAction === "" && <MainPage />}
         </div>
 

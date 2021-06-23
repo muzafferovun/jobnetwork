@@ -24,7 +24,7 @@ export const SelectInput = ({label,selectValue,items,error})  => {
     }
     return (
         <div className="container"  style={{textAlign:"left",marginTop:"20px"}}>
-            <FormControl variant="outlined" className={classes.formControl}   style={{width:"95%"}}>
+        <FormControl variant="outlined" className={classes.formControl}   style={{width:"95%"}}>
                 <InputLabel htmlFor="outlined-age-native-simple">{label}</InputLabel>
                 <Select
                     native
@@ -41,9 +41,9 @@ export const SelectInput = ({label,selectValue,items,error})  => {
                         ))
                     }
                 </Select>
-                {error&&<InputLabel style={{color:"red"}}>{error}</InputLabel>}
+               
             </FormControl>
-
+            {error&&<InputLabel style={{color:"red"}}>{error}</InputLabel>}
         </div>
     )
 }

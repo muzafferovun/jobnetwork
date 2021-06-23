@@ -106,15 +106,50 @@ export default function Loginform() {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         JobNetwork
-          </Typography>
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password"  value={password}  onChange={(e) => setPassword(e.target.value)} />
-                    <button onClick={login}>Login</button>
+                    </Typography>
+                            <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+             value={email}
+              onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+             value={password}
+               onChange={(e) => setPassword(e.target.value)}
+          />
+                   
+                   <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+             onClick={login}
+          >
+            Sign In
+          </Button>
+                   
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 Yeni Şirket Hesabı oluştur
-                </Link>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Link href="#" variant="body2">

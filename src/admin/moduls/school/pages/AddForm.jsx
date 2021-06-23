@@ -1,4 +1,4 @@
-import React, { useState, useEffect,Component } from 'react';
+import React, { useState,Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import { Image } from 'semantic-ui-react'
@@ -9,7 +9,7 @@ import { SelectInput } from '../../../../components/SelectInput';
 import { ImageInput } from '../../../../components/ImageInput';
 import CityService from '../../../../services/cityService';
 import Button from '@material-ui/core/Button';
-export default function AddForm()  {
+export default function AddForm({pageAction})  {
  
     const [avatar, setAvatar] = useState("");
     const [name, setName] = useState("");
@@ -41,7 +41,11 @@ export default function AddForm()  {
         result = await (await result).json();
        
         setErrorResult(result);
+        if(errorResult.success){
+            pageAction("list");
+        }
        loadErrors();
+
       
     }
         const [avatarError, setAvatarError] = useState("");
@@ -73,7 +77,7 @@ export default function AddForm()  {
             <InputText text={setWebsite}  error={websiteError} label="Schooll Web Site" />
             <ImageInput setUploadImage={setAvatar} label="Schooll Avatar"></ImageInput>
             <SelectInput  label="Schooll City"  error={cityError} selectValue={setCity} items={cityTypes}></SelectInput>
-              <Button variant="contained" color="primary" disableElevation onClick={(e)=>{addItem()}}>
+              <Button variant="contained"  type="submit" color="primary" disableElevation onClick={(e)=>{addItem()}}>
             Add New Schooll
             </Button>     
         </div>
