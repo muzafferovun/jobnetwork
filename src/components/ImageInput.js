@@ -1,5 +1,6 @@
 import React, { Component,useState } from 'react';
 import axios from 'axios';
+import { Image } from 'semantic-ui-react'
 export const ImageInput = ({setUploadImage,label}) => {
     const [image, setImage] = useState("");
     const [imageLink, setImageLink] = useState("");
@@ -23,7 +24,7 @@ export const ImageInput = ({setUploadImage,label}) => {
         <form onSubmit={(e)=>onSubmit(e)}>
             <div className="row" style={{ marginTop: '40px' }}>
                 <div className="col-md-4">
-                    {label}<input value={imageLink}></input>
+                    {label} {imageLink && <Image style={{ maxHeight: "100px",zIndex:10 }} src={`http://muzaffer.ibmtal.com/smallimage/${imageLink}`} size='medium' rounded />}
                 </div>
                 <div className="col-md-4 ">
                     <div className="form-group">

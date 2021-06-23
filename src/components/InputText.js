@@ -1,16 +1,16 @@
 import React, { Component,useState } from 'react';
 import axios from 'axios';
 import { TextField } from '@material-ui/core';
-
-export const InputText = ({text,label}) => {
+import InputLabel from '@material-ui/core/InputLabel';
+export const InputText = ({text,label,error}) => {
     const [inputValue, setInputValue] = useState("");
-     const onTextChange=(e)=> {
+      const onTextChange=(e)=> {
         setInputValue( e.target.value)
         text(e.target.value);
          
     }
     return (
-        <div className="container">
+        <div className="container" style={{textAlign:"left",marginTop:"10px"}}>
         <TextField  style={{width:"95%"}}
          
           id="outlined-required"
@@ -21,6 +21,7 @@ export const InputText = ({text,label}) => {
        
         onChange={(e)=>onTextChange(e)}
         />
+        {error&&<InputLabel style={{color:"red"}}>{error}</InputLabel>}
     </div>
 )
 }

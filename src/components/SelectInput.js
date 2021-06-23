@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
 }));
-export const SelectInput = ({label,selectValue,items}) => {
+export const SelectInput = ({label,selectValue,items,error})  => {
     const [inputValue, setInputValue] = useState("");
     const classes = useStyles();
     const onTextChange = (e) => {
@@ -23,7 +23,7 @@ export const SelectInput = ({label,selectValue,items}) => {
 
     }
     return (
-        <div className="container">
+        <div className="container"  style={{textAlign:"left",marginTop:"20px"}}>
             <FormControl variant="outlined" className={classes.formControl}   style={{width:"95%"}}>
                 <InputLabel htmlFor="outlined-age-native-simple">{label}</InputLabel>
                 <Select
@@ -34,12 +34,14 @@ export const SelectInput = ({label,selectValue,items}) => {
                     
 
                 >
+                            <option value={0}>...</option>
                     {
                         items.map(item => (
                             <option value={item.id}>{item.name}</option>
                         ))
                     }
                 </Select>
+                {error&&<InputLabel style={{color:"red"}}>{error}</InputLabel>}
             </FormControl>
 
         </div>

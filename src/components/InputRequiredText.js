@@ -1,7 +1,7 @@
 import React, { Component,useState } from 'react';
-
+import InputLabel from '@material-ui/core/InputLabel';
 import { TextField } from '@material-ui/core';
-export const InputRequiredText = ({text,label}) => {
+export const InputRequiredText = ({text,label,error}) => {
     const [inputValue, setInputValue] = useState("");
      const onTextChange=(e)=> {
         setInputValue( e.target.value)
@@ -20,6 +20,7 @@ export const InputRequiredText = ({text,label}) => {
        
         onChange={(e)=>onTextChange(e)}
         />
+        {error&&<InputLabel style={{color:"red"}}>{error}</InputLabel>}
     </div>
 )
 }

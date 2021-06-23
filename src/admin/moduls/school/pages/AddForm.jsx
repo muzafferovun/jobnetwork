@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect,Component } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import { Image } from 'semantic-ui-react'
 import SchoollService from '../../../services/schoollService';
@@ -9,7 +9,8 @@ import { SelectInput } from '../../../../components/SelectInput';
 import { ImageInput } from '../../../../components/ImageInput';
 import CityService from '../../../../services/cityService';
 import Button from '@material-ui/core/Button';
-export default function AddForm() {
+export default function AddForm()  {
+ 
     const [avatar, setAvatar] = useState("");
     const [name, setName] = useState("");
     const [website, setWebsite] = useState("");
@@ -23,6 +24,7 @@ export default function AddForm() {
      if(schoolTypes.length==0)   schoollService.getSchoollTypes().then(result=>setSchoolTypes(result.data.data));
          let cityService=new CityService();
          if(cityTypes.length==0)     cityService.getAll().then(result=>setCityTypes(result.data.data));
+     
     async function addItem() {
        
         let item = { schoolltype, name,avatar,website,city };
@@ -35,24 +37,45 @@ export default function AddForm() {
             },
             body: JSON.stringify(item)
         });
-        console.log(JSON.stringify(item));
+        
         result = await (await result).json();
-     
+       
+        setErrorResult(result);
+       loadErrors();
       
     }
+        const [avatarError, setAvatarError] = useState("");
+        const [nameError, setNameError] = useState("");
+       const [schoollTypeError, setSchoollTypeError] = useState("");
+       const [websiteError,setWebsiteError ] = useState("");
+      const [cityError,setCityError ] = useState("");
 
+    const [errorResult, setErrorResult] = useState([]);
+    let i;
+    function loadErrors(){
+        setAvatarError(""); setNameError(""); setSchoollTypeError(""); setWebsiteError(""); setCityError("");
+       if(errorResult.success==false){
+           for(i=0;i<errorResult.resultItems.length;i++){
+               if(errorResult.resultItems[i].item==="avatar") setAvatarError(errorResult.resultItems[i].value);
+               if(errorResult.resultItems[i].item==="name") setNameError(errorResult.resultItems[i].value);
+               if(errorResult.resultItems[i].item==="schoollType") setSchoollTypeError(errorResult.resultItems[i].value);
+               if(errorResult.resultItems[i].item==="website") setWebsiteError(errorResult.resultItems[i].value);
+               if(errorResult.resultItems[i].item==="city") setCityError(errorResult.resultItems[i].value);
+           }
+        }
+     }
+ 
     return (
-        <div>
-            <InputText text={setName} label="Schooll Name" />
-            {avatar && <Image style={{ maxHeight: "200px",zIndex:10 }} src={`http://muzaffer.ibmtal.com/smallimage/${avatar}`} size='medium' rounded />}
-          
-            <SelectInput label="Schooll Type" selectValue={setSchooltype} items={schoolTypes}></SelectInput>
-            <InputText text={setWebsite} label="Schooll Web Site" />
+        
+        <div >
+            <InputText text={setName} error={nameError} label="Schooll Name" />
+            <SelectInput label="Schooll Type"  error={schoollTypeError} selectValue={setSchooltype} items={schoolTypes}></SelectInput>
+            <InputText text={setWebsite}  error={websiteError} label="Schooll Web Site" />
             <ImageInput setUploadImage={setAvatar} label="Schooll Avatar"></ImageInput>
-            <SelectInput label="Schooll City" selectValue={setCity} items={cityTypes}></SelectInput>
-            <Button variant="contained" color="primary" disableElevation onClick={(e)=>addItem()}>
+            <SelectInput  label="Schooll City"  error={cityError} selectValue={setCity} items={cityTypes}></SelectInput>
+              <Button variant="contained" color="primary" disableElevation onClick={(e)=>{addItem()}}>
             Add New Schooll
-            </Button>       
+            </Button>     
         </div>
     )
 }
