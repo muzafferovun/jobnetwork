@@ -1,3 +1,6 @@
+
+   
+
 import React, { useState } from 'react'
 import MainPage from './pages/MainPage'
 
@@ -17,9 +20,10 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
+import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
 
-let modulCaption="Language";
+let modulCaption="Work Type";
 
 const useStyles = makeStyles({
     list: {
@@ -32,7 +36,7 @@ const useStyles = makeStyles({
 function handleModulMenuClick(event) {
     event.preventDefault();
 }
-export default function LanguageMain() {
+export default function WorkTypeMain() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -70,6 +74,12 @@ export default function LanguageMain() {
                         <ListItemText primary={"New "+modulCaption} />
                     </ListItem>
             </List>
+            <List>
+                    <ListItem button  onClick={()=>openModuleAction("list","List "+modulCaption)}>
+                        <ListItemIcon><InboxIcon /></ListItemIcon>
+                        <ListItemText primary={"List "+modulCaption} />
+                    </ListItem>
+            </List>
          </div>
     );
     const [activeModulAction, setActiveModulAction] = useState("");
@@ -97,7 +107,8 @@ export default function LanguageMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm/>}
+            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
+           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
             {activeModulAction === "" && <MainPage />}
         </div>
 

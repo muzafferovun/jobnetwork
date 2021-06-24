@@ -3,7 +3,7 @@ import React from 'react'
 export default function MainPage() {
     return (
         <div>
-           jobposition
+            schooll main page
         </div>
     )
 }

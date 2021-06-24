@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function AddForm() {
+export default function MainPage() {
     return (
         <div>
-            new language
+            schooll main page
         </div>
     )
 }

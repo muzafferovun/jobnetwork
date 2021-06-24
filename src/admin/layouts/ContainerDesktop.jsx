@@ -20,12 +20,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SchoolIcon from '@material-ui/icons/School';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
-import SchoolMain from '../moduls/school/SchoolMain';
-import LanguageMain from '../moduls/language/LanguageMain';
 import MainIndex from '../moduls/main/MainIndex';
 import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
-import JobPositionMain from '../moduls/jopposition/JopPositionMain';
+import SchoolMain from '../moduls/school/SchoolMain';
+import WorkTypeMain from '../moduls/worktype/WorkTypeMain';
+import JobPropertieMain from '../moduls/jobPropertie/JobPropertieMain';
+import SectorMain from '../moduls/sector/SectorMain';
 
 
 
@@ -78,15 +79,21 @@ export default function ContainerDesktop() {
 
                     <LanguageIcon fontSize="small" />
 
-                    <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("language")}>Language</Typography>
+                    <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("worktype")}>Work Types</Typography>
                   </MenuItem>
                   <MenuItem>
 
-<LanguageIcon fontSize="small" />
+                    <LanguageIcon fontSize="small" />
 
-<Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("jobposition")}>JobPosition</Typography>
-</MenuItem>
-</MenuList>
+                    <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("jobPropertie")}>Job Position Properties</Typography>
+                  </MenuItem>
+                  <MenuItem>
+
+                    <LanguageIcon fontSize="small" />
+
+                    <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("sector")}>Sectors</Typography>
+                  </MenuItem>
+                </MenuList>
               </AccordionDetails>
             </Accordion>
           </Paper>
@@ -94,9 +101,10 @@ export default function ContainerDesktop() {
         <Grid item xs={9}>
           <Paper className={classes.paper}>
             {activeModul === "school" && <SchoolMain />}
-            {activeModul === "language" && <LanguageMain />}
-            {activeModul === "jobposition" && <JobPositionMain />}
-            {activeModul === "" && <MainIndex />}
+            {activeModul === "worktype" && <WorkTypeMain />}
+            {activeModul === "jobPropertie" && <JobPropertieMain />}
+            {activeModul === "sector" && <SectorMain />}
+             {activeModul === "" && <MainIndex />}
           
           </Paper>
 

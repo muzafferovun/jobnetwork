@@ -20,9 +20,10 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
+import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
 
-let modulCaption="JobPosition";
+let modulCaption="Sector";
 
 const useStyles = makeStyles({
     list: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
 function handleModulMenuClick(event) {
     event.preventDefault();
 }
-export default function JobPositionMain() {
+export default function SectorMain() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -68,9 +69,15 @@ export default function JobPositionMain() {
                     </ListItem>
             </List>
             <List>
-                    <ListItem button  onClick={()=>openModuleAction("new","New JobPosition")}>
+                    <ListItem button  onClick={()=>openModuleAction("new","New "+modulCaption)}>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
-                        <ListItemText primary={"New JobPosition"} />
+                        <ListItemText primary={"New "+modulCaption} />
+                    </ListItem>
+            </List>
+            <List>
+                    <ListItem button  onClick={()=>openModuleAction("list","List "+modulCaption)}>
+                        <ListItemIcon><InboxIcon /></ListItemIcon>
+                        <ListItemText primary={"List "+modulCaption} />
                     </ListItem>
             </List>
          </div>
@@ -100,7 +107,8 @@ export default function JobPositionMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm/>}
+            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
+           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
             {activeModulAction === "" && <MainPage />}
         </div>
 
