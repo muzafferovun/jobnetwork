@@ -17,16 +17,12 @@ export default function AddForm({pageAction})  {
 
     const [schoolTypes, setSchoolTypes] = useState([]);
      const [cityTypes, setCityTypes] = useState([]);
-        let schoollService=new SchoollService();
-     if(schoolTypes.length==0)   schoollService.getSchoollTypes().then(result=>setSchoolTypes(result.data.data));
-         let cityService=new CityService();
-         if(cityTypes.length==0)     cityService.getAll().then(result=>setCityTypes(result.data.data));
-     
+      
     async function addItem() {
        
         let item = { name,avatar};
        
-        let result = fetch("http://localhost:8080/api/worktype/addWorkType", {
+        let result = fetch("http://localhost:8080/api/sector/addSector", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -62,7 +58,7 @@ export default function AddForm({pageAction})  {
     return (
         
         <div >
-            <InputText text={setName} error={nameError} label="Work Type" />
+            <InputText text={setName} error={nameError} label="Sector Name" />
             <ImageInput setUploadImage={setAvatar} label="Avatar"></ImageInput>
                <Button variant="contained"  type="submit" color="primary" disableElevation onClick={(e)=>{addItem()}}>
             Add 

@@ -27,6 +27,7 @@ import SchoolMain from '../moduls/school/SchoolMain';
 import WorkTypeMain from '../moduls/worktype/WorkTypeMain';
 import JobPropertieMain from '../moduls/jobPropertie/JobPropertieMain';
 import SectorMain from '../moduls/sector/SectorMain';
+import ProfessionMain from '../moduls/profession/ProfessionMain';
 
 
 
@@ -88,11 +89,15 @@ export default function ContainerDesktop() {
                     <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("jobPropertie")}>Job Position Properties</Typography>
                   </MenuItem>
                   <MenuItem>
-
                     <LanguageIcon fontSize="small" />
-
                     <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("sector")}>Sectors</Typography>
                   </MenuItem>
+                  <MenuItem>
+                    <LanguageIcon fontSize="small" />
+                    <Typography variant="inherit" style={{ marginLeft: "8px" }} onClick={() => openModule("profession")}>Professions</Typography>
+                  </MenuItem>
+
+
                 </MenuList>
               </AccordionDetails>
             </Accordion>
@@ -104,6 +109,7 @@ export default function ContainerDesktop() {
             {activeModul === "worktype" && <WorkTypeMain />}
             {activeModul === "jobPropertie" && <JobPropertieMain />}
             {activeModul === "sector" && <SectorMain />}
+            {activeModul === "profession" && <ProfessionMain />}
              {activeModul === "" && <MainIndex />}
           
           </Paper>

@@ -6,12 +6,12 @@ import { Button, Icon, Label, Menu, Table } from 'semantic-ui-react'
 import {useDispatch} from "react-redux"
 import { Image } from 'semantic-ui-react'
 import {toast} from 'react-toastify'
-import SectorService from '../../../services/sectorService';
+import ProfessionService from '../../../services/professionService';
 
 export default function ListItems() {
     const dispatch = useDispatch()
     const [items, setItems] = useState([]);
-        let actionService=new SectorService();
+        let actionService=new ProfessionService();
     if(items.length==0)    actionService.getAll().then(result=>setItems(result.data.data))
         console.log(items);
     const handleAddToCart=(item)=>{
@@ -23,8 +23,7 @@ export default function ListItems() {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Logo</Table.HeaderCell>
-                        <Table.HeaderCell>Sector Name</Table.HeaderCell>
+                        <Table.HeaderCell>Profession Name</Table.HeaderCell>
                          <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -34,7 +33,6 @@ export default function ListItems() {
                         items.map(item=>(
 
                      <Table.Row >
-                        <Table.Cell>{item.avatar&&<Image style={{ maxHeight: "60px",zIndex:10 }} src={`http://muzaffer.ibmtal.com/smallimage/${item.avatar}`} size='medium' rounded />}</Table.Cell>
                         <Table.Cell>{item.name}</Table.Cell>
                          <Table.Cell>
                                 <Button primary className="ui">Primary</Button>
