@@ -1,12 +1,11 @@
 
 import React, { useState,useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom';
-import { Button, Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Button, Icon, Label, Menu, Table,Image } from 'semantic-ui-react'
 
 import {useDispatch} from "react-redux"
-import { Image } from 'semantic-ui-react'
-import {toast} from 'react-toastify'
+
 import JobPropertieService from '../../../services/jobPropertieService';
+
 
 export default function ListItems() {
     const dispatch = useDispatch()
@@ -14,10 +13,6 @@ export default function ListItems() {
         let actionService=new JobPropertieService();
     if(items.length==0)    actionService.getAll().then(result=>setItems(result.data.data))
         console.log(items);
-    const handleAddToCart=(item)=>{
- 
-//        toast.success(`${product.productName} sepete Eklendi`);
-    }
     return (
         <div>
             <Table celled>

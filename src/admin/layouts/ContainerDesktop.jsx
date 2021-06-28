@@ -32,6 +32,7 @@ import ProfessionMain from '../moduls/profession/ProfessionMain';
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -44,11 +45,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ContainerDesktop() {
+  const history =new useHistory();
   const classes = useStyles();
 
   const [activeModul, setActiveModul] = useState("");
   function openModule(modulname) {
-    setActiveModul(modulname)
+    history.push(`/admin/${modulname}/`);
 
   }
   return (
@@ -105,12 +107,13 @@ export default function ContainerDesktop() {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            {activeModul === "school" && <SchoolMain />}
-            {activeModul === "worktype" && <WorkTypeMain />}
-            {activeModul === "jobPropertie" && <JobPropertieMain />}
-            {activeModul === "sector" && <SectorMain />}
-            {activeModul === "profession" && <ProfessionMain />}
-             {activeModul === "" && <MainIndex />}
+          <Route  path="/admin/school" component={SchoolMain}/>
+          <Route  path="/admin/worktype" component={WorkTypeMain}/>
+          <Route  path="/admin/jobPropertie" component={JobPropertieMain}/>
+          <Route  path="/admin/sector" component={SectorMain}/>
+          <Route  path="/admin/profession" component={ProfessionMain}/>
+          <Route   path="/admin/" component={MainIndex}/>
+ 
           
           </Paper>
 

@@ -1,29 +1,23 @@
-export const ADD_ITEM="ADD_ITEM"
-export const items={
-        addItem:{name:""},
-        errorResult:{},
-        
-   
-}
-export function addItem(){
-    return {
-        type:ADD_ITEM,
-        payload:{}
-    }
-}
+
 const initialState = {
-    items:[]
+    allDataResult:[],
+    message:''
 }
  
-export default function reducer(state = initialState, { type, payload }) {
 
+    export default function professionReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case ADD_ITEM:
-            
-               return {
+        case 'ADD_SUCCESS':
+            console.log(payload)
+                 return {
                     ...state
                 }
-             
+
+        case 'ADD_ERROR':
+                return {
+                       ...state,message:payload
+                }
+                   
         default:
             return state;
         

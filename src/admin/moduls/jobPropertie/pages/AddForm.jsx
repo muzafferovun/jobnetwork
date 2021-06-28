@@ -1,22 +1,18 @@
 import React, { useState,Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Image } from 'semantic-ui-react'
-import { InputRequiredText } from '../../../../components/InputRequiredText';
+
 import { InputText } from '../../../../components/InputText';
-import { SelectInput } from '../../../../components/SelectInput';
+
 import { ImageInput } from '../../../../components/ImageInput';
 
 import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
 export default function AddForm({pageAction})  {
- 
+    const history=new useHistory();
     const [avatar, setAvatar] = useState("");
     const [name, setName] = useState("");
     const componentRef = React.useRef();
 
-    const [schoolTypes, setSchoolTypes] = useState([]);
-     const [cityTypes, setCityTypes] = useState([]);
-      
-    async function addItem() {
+     async function addItem() {
        
         let item = { name,avatar};
        
@@ -33,7 +29,7 @@ export default function AddForm({pageAction})  {
 
             setErrorResult(result);
             if(errorResult.success){
-                pageAction("list");
+                history.push(`/admin/jobPropertie/list`);
             }
         loadErrors();
       

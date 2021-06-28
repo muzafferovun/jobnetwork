@@ -1,36 +1,43 @@
-import React, { useState,Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import { Image } from 'semantic-ui-react'
-import SchoollService from '../../../services/schoollService';
-import { InputRequiredText } from '../../../../components/InputRequiredText';
+
 import { InputText } from '../../../../components/InputText';
-import { SelectInput } from '../../../../components/SelectInput';
+
 import { ImageInput } from '../../../../components/ImageInput';
-import CityService from '../../../../services/cityService';
+
 import Button from '@material-ui/core/Button';
+import WorkTypeService from '../../../services/workTypeService';
+import { useHistory } from 'react-router-dom';
+import ListItems from './ListItems';
+import { Route } from 'react-router';
+import { useDispatch } from 'react-redux';
 export default function AddForm({pageAction})  {
- 
+    const dispatch = useDispatch();
+    const history=new useHistory();
     const [avatar, setAvatar] = useState("");
     const [name, setName] = useState("");
-    const componentRef = React.useRef();
-
-    const [schoolTypes, setSchoolTypes] = useState([]);
-     const [cityTypes, setCityTypes] = useState([]);
-        let schoollService=new SchoollService();
-     if(schoolTypes.length==0)   schoollService.getSchoollTypes().then(result=>setSchoolTypes(result.data.data));
-         let cityService=new CityService();
-         if(cityTypes.length==0)     cityService.getAll().then(result=>setCityTypes(result.data.data));
+ 
+         let modulService=new WorkTypeService();
      
-    async function addItem() {
+    function addItem() {
        
         let item = { name,avatar};
-       
-        let result = fetch("http://localhost:8080/api/worktype/addWorkType", {
+        modulService.addWorkType(item)
+            .then(result=>{
+                setErrorResult(result)
+                console.log(errorResult)
+                if(errorResult.success){
+                    history.push("/admin/worktype/list");
+                }
+                loadErrors();
+               
+            }).catch(error=>{})
+  /*
+            let result = fetch("http://localhost:8080/api/worktype/addWorkType", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Accept": '*/*'
+                
             },
             body: JSON.stringify(item)
         });
@@ -42,7 +49,10 @@ export default function AddForm({pageAction})  {
                 pageAction("list");
             }
         loadErrors();
-      
+    */  
+    }
+    const handleAddItem=(e)=>{
+        dispatch(addItem())
     }
         const [avatarError, setAvatarError] = useState("");
         const [nameError, setNameError] = useState("");
@@ -64,9 +74,10 @@ export default function AddForm({pageAction})  {
         <div >
             <InputText text={setName} error={nameError} label="Work Type" />
             <ImageInput setUploadImage={setAvatar} label="Avatar"></ImageInput>
-               <Button variant="contained"  type="submit" color="primary" disableElevation onClick={(e)=>{addItem()}}>
+               <Button variant="contained"  type="submit" color="primary" disableElevation onClick={(e)=>handleAddItem(e)}>
             Add 
-            </Button>     
+            </Button>    
+            <Route  path="/admin/worktype/list" component={ListItems}/> 
         </div>
     )
 }

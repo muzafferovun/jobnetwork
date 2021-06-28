@@ -85,11 +85,11 @@ export default function Loginform() {
         result = await (await result).json();
         sessionStorage.setItem('ssid', result.sessioncode)
         if(result.sessioncode!=""){
-            if(result.userType==100)
+            if(result.userType===100)
                 history.push("/admin")
-            else if(result.userType==10)
+            else if(result.userType===10)
             history.push("/company")
-        else if(result.userType==1)
+        else if(result.userType===1)
              history.push("/person")
         }
 

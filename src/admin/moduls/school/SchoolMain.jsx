@@ -22,9 +22,10 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
 import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useHistory } from 'react-router-dom';
+import { Route } from 'react-router';
 let modulCaption="Schooll";
-
+let modulName="school";
 const useStyles = makeStyles({
     list: {
         width: 250,
@@ -37,6 +38,7 @@ function handleModulMenuClick(event) {
     event.preventDefault();
 }
 export default function SchoolMain() {
+    const history=new useHistory();
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -85,8 +87,7 @@ export default function SchoolMain() {
     const [activeModulAction, setActiveModulAction] = useState("");
     const [activeModulActionCaption, setActiveModulActionCaption] = useState("");
     function openModuleAction(actionName, actionCaption) {
-        setActiveModulAction(actionName)
-        setActiveModulActionCaption(actionCaption)
+        history.push(`/admin/${modulName}/${actionName}`);
 
     }
     return (
@@ -107,9 +108,9 @@ export default function SchoolMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
-           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
-            {activeModulAction === "" && <MainPage />}
+            <Route   path="/admin/school/new" component={AddForm}/>
+            <Route  path="/admin/school/list" component={ListItems}/>
+            <Route  path="/admin/school" component={MainPage}/>
         </div>
 
     )

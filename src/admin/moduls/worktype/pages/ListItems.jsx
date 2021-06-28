@@ -8,6 +8,7 @@ import { Image } from 'semantic-ui-react'
 import {toast} from 'react-toastify'
 import WorkTypeService from '../../../services/workTypeService';
 
+
 export default function ListItems() {
     const dispatch = useDispatch()
     const [items, setItems] = useState([]);

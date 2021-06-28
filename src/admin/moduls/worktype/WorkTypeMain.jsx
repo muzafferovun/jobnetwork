@@ -22,7 +22,9 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
 import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { Route } from 'react-router';
+import { useHistory } from 'react-router-dom';
+let modulName="worktype";
 let modulCaption="Work Type";
 
 const useStyles = makeStyles({
@@ -38,6 +40,7 @@ function handleModulMenuClick(event) {
 }
 export default function WorkTypeMain() {
     const classes = useStyles();
+    const history=new useHistory();
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -85,8 +88,7 @@ export default function WorkTypeMain() {
     const [activeModulAction, setActiveModulAction] = useState("");
     const [activeModulActionCaption, setActiveModulActionCaption] = useState("");
     function openModuleAction(actionName, actionCaption) {
-        setActiveModulAction(actionName)
-        setActiveModulActionCaption(actionCaption)
+        history.push(`/admin/${modulName}/${actionName}`);
 
     }
     return (
@@ -107,9 +109,9 @@ export default function WorkTypeMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
-           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
-            {activeModulAction === "" && <MainPage />}
+            <Route  path="/admin/worktype/new" component={AddForm}/>
+            <Route  path="/admin/worktype/list" component={ListItems}/>
+            <Route  path="/admin/worktype" component={MainPage}/>
         </div>
 
     )

@@ -14,10 +14,10 @@ function App() {
  }, []);
   return (
     <div className="App">
-           <Route exact path="/" component={regularMain}/>
-           <Route exact path="/admin/" component={AdminMainpage}/>
-           <Route exact path="/company/" component={CompanyMainPage}/>
-           <Route exact path="/person/" component={PersonMainPage}/>
+           <Route  path="/" component={regularMain}/>
+           <Route  path="/admin/" component={AdminMainpage}/>
+           <Route  path="/company/" component={CompanyMainPage}/>
+           <Route  path="/person/" component={PersonMainPage}/>
 
     </div>
   );

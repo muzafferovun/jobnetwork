@@ -19,12 +19,15 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import AddForm from './pages/AddForm';
+
 import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
+import { useHistory } from 'react-router-dom';
+import { Route } from 'react-router';
+import AddForm from './pages/AddForm';
 
 let modulCaption="Profession";
-
+let modulName="profession";
 const useStyles = makeStyles({
     list: {
         width: 250,
@@ -37,6 +40,7 @@ function handleModulMenuClick(event) {
     event.preventDefault();
 }
 export default function ProfessionMain() {
+    const history=new useHistory();
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -85,8 +89,7 @@ export default function ProfessionMain() {
     const [activeModulAction, setActiveModulAction] = useState("");
     const [activeModulActionCaption, setActiveModulActionCaption] = useState("");
     function openModuleAction(actionName, actionCaption) {
-        setActiveModulAction(actionName)
-        setActiveModulActionCaption(actionCaption)
+        history.push(`/admin/${modulName}/${actionName}`);
 
     }
     return (
@@ -107,9 +110,9 @@ export default function ProfessionMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
-           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
-            {activeModulAction === "" && <MainPage />}
+            <Route   path="/admin/profession/new" component={AddForm}/>
+            <Route   path="/admin/profession/list" component={ListItems}/>
+            <Route  path="/admin/profession" component={MainPage}/>
         </div>
 
     )

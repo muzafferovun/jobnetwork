@@ -22,8 +22,10 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddForm from './pages/AddForm';
 import ListItems from './pages/ListItems';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useHistory } from 'react-router-dom';
+import { Route } from 'react-router';
 let modulCaption="Sector";
+let modulName="sector";
 
 const useStyles = makeStyles({
     list: {
@@ -37,6 +39,7 @@ function handleModulMenuClick(event) {
     event.preventDefault();
 }
 export default function SectorMain() {
+    const history=new useHistory();
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -80,14 +83,13 @@ export default function SectorMain() {
                         <ListItemText primary={"List "+modulCaption} />
                     </ListItem>
             </List>
-         </div>
+         </div> 
     );
     const [activeModulAction, setActiveModulAction] = useState("");
     const [activeModulActionCaption, setActiveModulActionCaption] = useState("");
     function openModuleAction(actionName, actionCaption) {
-        setActiveModulAction(actionName)
-        setActiveModulActionCaption(actionCaption)
-
+        history.push(`/admin/${modulName}/${actionName}`);
+ 
     }
     return (
         <div>
@@ -107,10 +109,11 @@ export default function SectorMain() {
                 </React.Fragment>
                 <Typography color="textPrimary">{activeModulActionCaption}</Typography>
             </Breadcrumbs>
-            {activeModulAction === "new" && <AddForm pageAction={setActiveModulAction}/>}
-           {activeModulAction === "list" && <ListItems pageAction={setActiveModulAction}/>}
-            {activeModulAction === "" && <MainPage />}
-        </div>
+            <Route  path="/admin/sector/new" component={AddForm}/>
+            <Route  path="/admin/sector/list" component={ListItems}/>
+            <Route  path="/admin/sector" component={MainPage}/>
+  
+          </div>
 
     )
 }

@@ -6,6 +6,7 @@ export const InputText = ({text,label,error}) => {
     const [inputValue, setInputValue] = useState("");
       const onTextChange=(e)=> {
         setInputValue( e.target.value)
+        text(inputValue);
       
          
     }
